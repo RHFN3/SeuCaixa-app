@@ -2,7 +2,11 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, } from "react-nati
 
 import * as Animatable from 'react-native-animatable';
 
+import { useNavigation } from '@react-navigation/native';
+
 export default function SignIn() {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
@@ -27,7 +31,10 @@ export default function SignIn() {
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonRegister}>
+                <TouchableOpacity 
+                style={styles.buttonRegister}
+                onPress={ () => navigation.navigate('Register')}
+                >
                     <Text style={styles.buttonRegisterText}>Não possui uma conta? Cadastre-se</Text>
                 </TouchableOpacity>
 
