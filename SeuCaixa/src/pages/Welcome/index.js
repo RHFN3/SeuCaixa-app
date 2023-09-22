@@ -27,7 +27,7 @@ export default function Welcome() {
                 />
             </View>
 
-            <Animatable.View delay={800} animation="fadeInUp" style={styles.containerForm}>
+            <Animatable.View delay={1000} animation="fadeInUp" style={styles.containerForm}>
                 <Text style={styles.title}>Acompanhe o caixa da sua loja de onde estiver</Text>
                 <Text style={styles.text}>Faça o login para começar</Text>
 

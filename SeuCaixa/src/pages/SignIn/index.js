@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, } from "react-native";
-
+import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, } from "react-native";
+import { useState } from "react";
+import { Ionicons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 
 import { useNavigation } from '@react-navigation/native';
@@ -8,28 +9,43 @@ export default function SignIn() {
     const navigation = useNavigation();
 
     return (
-        <View style={styles.container}>
-            <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
+        <SafeAreaView style={styles.container}>
+            <Animatable.View animation="fadeInLeft" delay={200} style={styles.containerHeader}>
                 <Text style={styles.message}>Bem-vindo(a)</Text>
             </Animatable.View>
 
 
-            <Animatable.View animation="fadeInUp" style={styles.containerForm}>
+            <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
+                <View>
                 <Text style={styles.title}>Email</Text>
                 <TextInput
                 placeholder="Digite um email..."
+                keyboardType="email-address"
                 style={styles.input}
                 />
+                </View>
 
+                <View>
                 <Text style={styles.title}>Senha</Text>
                 <TextInput
                 placeholder="Digite sua senha..."
+                secureTextEntry
                 style={styles.input}
                 />
+                <TouchableOpacity style={{position:'absolute', right: 12}}>
+                    <Ionicons name="eye-off" size={24}/>
+                </TouchableOpacity>
+                </View>
+                
+                <TouchableOpacity style={{position:'absolute', marginTop:210, marginLeft:232}}>
+                    <Text style={{fontSize: 16}}>Esqueceu a senha?</Text>
+                </TouchableOpacity>
+
 
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
+                
 
                 <TouchableOpacity 
                 style={styles.buttonRegister}
@@ -38,11 +54,58 @@ export default function SignIn() {
                     <Text style={styles.buttonRegisterText}>Não possui uma conta? Cadastre-se</Text>
                 </TouchableOpacity>
 
+                    <Text style={{
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        alignSelf: 'center',
+                        justifyContent:'center',
+                        paddingTop: 20,
+                        paddingBottom: 20,
+                    }}>
+                        Ou
+                </Text>
+                <View style={{flexDirection: 'row', justifyContent:'space-between', paddingStart: '10%', paddingEnd:'10%'}}>
+                    <TouchableOpacity style={{
+                    width:50, 
+                    height:50, 
+                    alignItems:'center', 
+                    justifyContent:'center',
+                    }}>  
+                    <Image 
+                    source={require('../../components/google.png')} 
+                    style={{width:40, height:40, resizeMode:'contain'}}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={{
+                    width:50, 
+                    height:50, 
+                    alignItems:'center', 
+                    justifyContent:'center',
+                    }}>
+                    <Image 
+                    source={require('../../components/facebook.png')} 
+                    style={{width:40, height:40, resizeMode:'contain'}}/>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity style={{
+                    width:50, 
+                    height:50, 
+                    alignItems:'center', 
+                    justifyContent:'center',
+                    }}>
+                    <Image 
+                    source={require('../../components/apple.png')} 
+                    style={{width:40, height:40, resizeMode:'contain'}}/>
+                    </TouchableOpacity>
+                </View>
             </Animatable.View>
 
-        </View>
+        </SafeAreaView>
     )
 };
+
+
+
 
 
 const styles = StyleSheet.create({
@@ -83,7 +146,7 @@ const styles = StyleSheet.create({
         width: "100%",
         borderRadius: 4,
         paddingVertical: 8,
-        marginTop: 14,
+        marginTop: 40,
         justifyContent:'center',
         alignItems: 'center',
 
@@ -94,10 +157,11 @@ const styles = StyleSheet.create({
         //fontWeight: 'bold'
     }, 
     buttonRegister:{
-        marginTop: 14,
+        marginTop: 20,
         alignSelf: 'center'
     },
     buttonRegisterText:{
-        color:"#a5a5a5"
+        color:"#888C90",
+        fontSize: 16,
     }
 })
