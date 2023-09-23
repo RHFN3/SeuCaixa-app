@@ -16,28 +16,40 @@ export default function SignIn() {
 
 
             <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
+                
                 <View>
-                <Text style={styles.title}>Email</Text>
+                <Text style={{fontSize: 20, marginTop: 28,}}>Email</Text>
                 <TextInput
                 placeholder="Digite um email..."
                 keyboardType="email-address"
-                style={styles.input}
+                style={{
+                    borderBottomWidth: 1,
+                    height: 40,
+                    marginBottom: 12,
+                    fontSize: 16,}}
                 />
                 </View>
 
                 <View>
-                <Text style={styles.title}>Senha</Text>
+                <Text style={{fontSize: 20, marginTop: 28,}}>Senha</Text>
+                </View>
+
+                <View>
                 <TextInput
                 placeholder="Digite sua senha..."
                 secureTextEntry
-                style={styles.input}
+                style={{
+                    borderBottomWidth: 1,
+                    height: 40,
+                    marginBottom: 12,
+                    fontSize: 16,}}
                 />
-                <TouchableOpacity style={{position:'absolute', right: 12}}>
-                    <Ionicons name="eye-off" size={24}/>
-                </TouchableOpacity>
+                    <TouchableOpacity style={{position:'absolute', right: 12}}>
+                        <Ionicons name="eye-off" size={24}/>
+                    </TouchableOpacity>
                 </View>
                 
-                <TouchableOpacity style={{position:'absolute', marginTop:210, marginLeft:232}}>
+                <TouchableOpacity style={{position:'absolute', marginTop:210, right:22}}>
                     <Text style={{fontSize: 16}}>Esqueceu a senha?</Text>
                 </TouchableOpacity>
 
@@ -98,7 +110,7 @@ export default function SignIn() {
                     style={{width:40, height:40, resizeMode:'contain'}}/>
                     </TouchableOpacity>
                 </View>
-            </Animatable.View>
+            </Animatable.View >
 
         </SafeAreaView>
     )
@@ -130,10 +142,6 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 25,
         paddingStart: '5%',
         paddingEnd: '5%'
-    },
-    title:{
-        fontSize: 20,
-        marginTop: 28,
     },
     input:{
         borderBottomWidth: 1,
