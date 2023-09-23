@@ -1,12 +1,15 @@
 import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from "react";
+import Checkbox from 'expo-checkbox';
 import * as Animatable from 'react-native-animatable';
 
 import { useNavigation } from '@react-navigation/native';
 
 export default function Register() {
     const navigation = useNavigation();
+    const [isPasswordShown, setIsPasswordShown] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -75,14 +78,44 @@ export default function Register() {
                 }}>
                     <TextInput 
                     placeholder="Digite sua senha"
-                    secureTextEntry
+                    secureTextEntry={isPasswordShown}
                     style={{
                         width:"100%"
                     }}
                     />
-                    <TouchableOpacity style={{position:'absolute', right: 12}}>
-                    <Ionicons name="eye-off" size={24}/>
+                <TouchableOpacity style={{position:'absolute', right: 12}} onPress={()=>setIsPasswordShown(!isPasswordShown)}>
+                {
+                        isPasswordShown == true ? (
+                            <Ionicons name="eye" size={24}/>
+                        ) : (
+                            <Ionicons name="eye-off" size={24}/>
+                        )
+                    }
                 </TouchableOpacity>
+                </View>
+
+                <View style={{flexDirection: 'row', marginVertical:16}}>
+                    <Checkbox
+                    style={{marginRight: 8}}
+                    value={isChecked}
+                    onValueChange={setIsChecked}
+                    />
+                    <Text>Concordo com os termos de uso</Text>
+                </View>
+
+                <View style={{marginTop:10}}>
+                    <TouchableOpacity style={{
+                        backgroundColor:"#011327",
+                        width: "100%",
+                        height: 45,
+                        borderRadius: 4,
+                        marginTop: 20,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }} onPress={() => navigation.navigate('SignIn')}>
+                        
+                        <Text style={{color:'white', fontSize: 20}}>Registrar</Text>
+                    </TouchableOpacity>
                 </View>
 
             </Animatable.View>

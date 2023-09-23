@@ -2,11 +2,14 @@ import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Imag
 import { useState } from "react";
 import { Ionicons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
+import Checkbox from 'expo-checkbox';
 
 import { useNavigation } from '@react-navigation/native';
 
 export default function SignIn() {
     const navigation = useNavigation();
+    const [isChecked, setIsChecked] = useState(false);
+    const [isPasswordShown, setIsPasswordShown] = useState(true);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -14,10 +17,10 @@ export default function SignIn() {
                 <Text style={styles.message}>Bem-vindo(a)</Text>
             </Animatable.View>
 
-
             <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
                 
                 <View>
+                <Text style={{fontSize: 25, fontWeight:'bold', marginTop:15}}>Login</Text>
                 <Text style={{fontSize: 20, marginTop: 28,}}>Email</Text>
                 <TextInput
                 placeholder="Digite um email..."
@@ -37,22 +40,38 @@ export default function SignIn() {
                 <View>
                 <TextInput
                 placeholder="Digite sua senha..."
-                secureTextEntry
+                secureTextEntry={isPasswordShown}
                 style={{
                     borderBottomWidth: 1,
                     height: 40,
                     marginBottom: 12,
                     fontSize: 16,}}
                 />
-                    <TouchableOpacity style={{position:'absolute', right: 12}}>
-                        <Ionicons name="eye-off" size={24}/>
-                    </TouchableOpacity>
+
+                <TouchableOpacity style={{position:'absolute', right: 12}} onPress={()=>setIsPasswordShown(!isPasswordShown)}>
+                    {
+                        isPasswordShown == false ? (
+                            <Ionicons name="eye-off" size={24}/>
+                        ) : (
+                            <Ionicons name="eye" size={24}/>
+                        )
+                    }
+                </TouchableOpacity>
+                
                 </View>
                 
-                <TouchableOpacity style={{position:'absolute', marginTop:210, right:22}}>
+                <TouchableOpacity style={{position:'absolute', marginTop:258, right:22}}>
                     <Text style={{fontSize: 16}}>Esqueceu a senha?</Text>
                 </TouchableOpacity>
 
+                <View style={{flexDirection: 'row', marginVertical:6}}>
+                    <Checkbox
+                    style={{marginRight: 8}}
+                    value={isChecked}
+                    onValueChange={setIsChecked}
+                    />
+                    <Text>Manter conectado</Text>
+                </View>
 
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>Entrar</Text>
@@ -76,6 +95,14 @@ export default function SignIn() {
                     }}>
                         Ou
                 </Text>
+                <Text style={{
+                    color:"#888C90",
+                    fontSize: 16,
+                    alignSelf: 'center',
+                    justifyContent:'center',
+                    paddingBottom: 20
+                    }}>Faça o login com</Text>
+
                 <View style={{flexDirection: 'row', justifyContent:'space-between', paddingStart: '10%', paddingEnd:'10%'}}>
                     <TouchableOpacity style={{
                     width:50, 
@@ -154,7 +181,7 @@ const styles = StyleSheet.create({
         width: "100%",
         borderRadius: 4,
         paddingVertical: 8,
-        marginTop: 40,
+        marginTop: 50,
         justifyContent:'center',
         alignItems: 'center',
 
