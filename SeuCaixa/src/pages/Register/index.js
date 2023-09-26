@@ -1,15 +1,27 @@
 import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Checkbox from 'expo-checkbox';
 import * as Animatable from 'react-native-animatable';
+import auth from "../../config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { useNavigation } from '@react-navigation/native';
 
 export default function Register() {
     const navigation = useNavigation();
     const [isPasswordShown, setIsPasswordShown] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);  
+
+    useEffect (() => {
+        createUserWithEmailAndPassword(auth, "teste5@gmail.com", "123456")
+        .then((dataUsers) => {
+            console.log(dataUsers)
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+    }, [] );
 
     return (
         <SafeAreaView style={styles.container}>
