@@ -16,16 +16,6 @@ export default function Register() {
     const [email, setEmail] = useState ('');
     const [password, setPassword] = useState ('');
 
-    const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user)
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-
     return (
         <SafeAreaView style={styles.container}>
             <Animatable.View animation="fadeInDown" delay={200} style={styles.title}>
@@ -131,7 +121,7 @@ export default function Register() {
                         marginTop: 20,
                         alignItems: 'center',
                         justifyContent: 'center'
-                    }} onPress={() => navigation.navigate('SignIn')}>
+                    }}onPress={ () => navigation.navigate('SignIn')}>
                         
                         <Text style={{color:'white', fontSize: 20}}>Registrar</Text>
                     </TouchableOpacity>
