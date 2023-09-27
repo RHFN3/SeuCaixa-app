@@ -3,18 +3,33 @@ import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from "react";
 import Checkbox from 'expo-checkbox';
 import * as Animatable from 'react-native-animatable';
-import auth from "../../config/firebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../../config/firebase';
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { useNavigation } from '@react-navigation/native';
+
+
+function cadastrar(email, password) {
+    if (email == '' && password == '') {
+        return alert('Preencha tudo')
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            alert("funcionou")
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+}
 
 
 export default function Register() {
     const navigation = useNavigation();
     const [isPasswordShown, setIsPasswordShown] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);  
-    const [email, setEmail] = useState ('');
-    const [password, setPassword] = useState ('');
+    const [isChecked, setIsChecked] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
         <SafeAreaView style={styles.container}>
@@ -24,8 +39,8 @@ export default function Register() {
 
 
             <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
-                
-                <View style={{marginBottom:12, marginTop:20}}>
+
+                <View style={{ marginBottom: 12, marginTop: 20 }}>
                     <Text>Nome e sobrenome</Text>
                 </View>
 
@@ -35,18 +50,18 @@ export default function Register() {
                     borderColor: "#000",
                     borderWidth: 1,
                     borderRadius: 8,
-                    justifyContent:'center',
+                    justifyContent: 'center',
                     paddingLeft: 22
                 }}>
-                    <TextInput 
-                    placeholder="Digite seu nome"
-                    style={{
-                        width:"100%"
-                    }}
+                    <TextInput
+                        placeholder="Digite seu nome"
+                        style={{
+                            width: "100%"
+                        }}
                     />
                 </View>
 
-                <View style={{marginBottom:12, marginTop:20}}>
+                <View style={{ marginBottom: 12, marginTop: 20 }}>
                     <Text>E-mail</Text>
                 </View>
 
@@ -56,21 +71,21 @@ export default function Register() {
                     borderColor: "#000",
                     borderWidth: 1,
                     borderRadius: 8,
-                    justifyContent:'center',
+                    justifyContent: 'center',
                     paddingLeft: 22
                 }}>
-                    <TextInput 
-                    placeholder="Digite seu email"
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType='email-address'
-                    style={{
-                        width:"100%"
-                    }}
+                    <TextInput
+                        placeholder="Digite seu email"
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType='email-address'
+                        style={{
+                            width: "100%"
+                        }}
                     />
                 </View>
 
-                <View style={{marginBottom:12, marginTop:20}}>
+                <View style={{ marginBottom: 12, marginTop: 20 }}>
                     <Text>Senha</Text>
                 </View>
 
@@ -80,50 +95,50 @@ export default function Register() {
                     borderColor: "#000",
                     borderWidth: 1,
                     borderRadius: 8,
-                    justifyContent:'center',
+                    justifyContent: 'center',
                     paddingLeft: 22
                 }}>
-                    <TextInput 
-                    placeholder="Digite sua senha"
-                    secureTextEntry={isPasswordShown}
-                    value={password}
-                    onChangeText={setPassword}
-                    style={{
-                        width:"100%"
-                    }}
+                    <TextInput
+                        placeholder="Digite sua senha"
+                        secureTextEntry={isPasswordShown}
+                        value={password}
+                        onChangeText={setPassword}
+                        style={{
+                            width: "100%"
+                        }}
                     />
-                <TouchableOpacity style={{position:'absolute', right: 12}} onPress={()=>setIsPasswordShown(!isPasswordShown)}>
-                {
-                        isPasswordShown == true ? (
-                            <Ionicons name="eye" size={24}/>
-                        ) : (
-                            <Ionicons name="eye-off" size={24}/>
-                        )
-                    }
-                </TouchableOpacity>
+                    <TouchableOpacity style={{ position: 'absolute', right: 12 }} onPress={() => setIsPasswordShown(!isPasswordShown)}>
+                        {
+                            isPasswordShown == true ? (
+                                <Ionicons name="eye" size={24} />
+                            ) : (
+                                <Ionicons name="eye-off" size={24} />
+                            )
+                        }
+                    </TouchableOpacity>
                 </View>
 
-                <View style={{flexDirection: 'row', marginVertical:16}}>
+                <View style={{ flexDirection: 'row', marginVertical: 16 }}>
                     <Checkbox
-                    style={{marginRight: 8}}
-                    value={isChecked}
-                    onValueChange={setIsChecked}
+                        style={{ marginRight: 8 }}
+                        value={isChecked}
+                        onValueChange={setIsChecked}
                     />
                     <Text>Concordo com os termos de uso</Text>
                 </View>
 
-                <View style={{marginTop:10}}>
+                <View style={{ marginTop: 10 }}>
                     <TouchableOpacity style={{
-                        backgroundColor:"#011327",
+                        backgroundColor: "#011327",
                         width: "100%",
                         height: 45,
                         borderRadius: 4,
                         marginTop: 20,
                         alignItems: 'center',
                         justifyContent: 'center'
-                    }}onPress={ () => navigation.navigate('SignIn')}>
-                        
-                        <Text style={{color:'white', fontSize: 20}}>Registrar</Text>
+                    }} onPress={() => cadastrar(email,password)}>
+
+                        <Text style={{ color: 'white', fontSize: 20 }}>Registrar</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -135,21 +150,21 @@ export default function Register() {
 
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         flex: 1,
         backgroundColor: "#011327",
     },
-    title:{
+    title: {
         marginTop: '10%',
         marginBottom: '8%',
         paddingStart: '5%',
     },
-    message:{
+    message: {
         color: "#FFF",
         fontSize: 28,
         fontWeight: 'bold',
     },
-    containerForm:{
+    containerForm: {
         flex: 1,
         backgroundColor: "#FFF",
         borderTopLeftRadius: 25,
