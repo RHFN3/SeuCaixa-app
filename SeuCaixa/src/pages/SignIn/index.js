@@ -10,6 +10,8 @@ export default function SignIn() {
     const navigation = useNavigation();
     const [isChecked, setIsChecked] = useState(false);
     const [isPasswordShown, setIsPasswordShown] = useState(true);
+    const [email, setEmail] = useState ('');
+    const [password, setPassword] = useState ('');
 
     return (
         <SafeAreaView style={styles.container}>
@@ -25,6 +27,8 @@ export default function SignIn() {
                 <TextInput
                 placeholder="Digite um email..."
                 keyboardType="email-address"
+                value={email}
+                onChangeText={setEmail}
                 style={{
                     borderBottomWidth: 1,
                     height: 40,
@@ -40,6 +44,8 @@ export default function SignIn() {
                 <View>
                 <TextInput
                 placeholder="Digite sua senha..."
+                value={password}
+                onChangeText={setPassword}
                 secureTextEntry={isPasswordShown}
                 style={{
                     borderBottomWidth: 1,

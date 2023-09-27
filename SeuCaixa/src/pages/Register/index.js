@@ -3,17 +3,28 @@ import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from "react";
 import Checkbox from 'expo-checkbox';
 import * as Animatable from 'react-native-animatable';
-import  auth  from "../../config/firebase";
-import {  } from ;
+import auth from "../../config/firebase";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import { useNavigation } from '@react-navigation/native';
+
 
 export default function Register() {
     const navigation = useNavigation();
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);  
-    
+    const [email, setEmail] = useState ('');
+    const [password, setPassword] = useState ('');
 
+    const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user)
+        })
+        .catch((error) => {
+            console.log(error)
+        });
 
     return (
         <SafeAreaView style={styles.container}>
@@ -60,6 +71,8 @@ export default function Register() {
                 }}>
                     <TextInput 
                     placeholder="Digite seu email"
+                    value={email}
+                    onChangeText={setEmail}
                     keyboardType='email-address'
                     style={{
                         width:"100%"
@@ -83,6 +96,8 @@ export default function Register() {
                     <TextInput 
                     placeholder="Digite sua senha"
                     secureTextEntry={isPasswordShown}
+                    value={password}
+                    onChangeText={setPassword}
                     style={{
                         width:"100%"
                     }}
