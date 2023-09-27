@@ -1,7 +1,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, connectAuthEmulator  } from "firebase/auth";
-import { initializeAuth, getReactNativePersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -22,40 +22,4 @@ const auth = initializeAuth(app)/*, {
 });
 connectAuthEmulator(auth, "http://127.0.0.1:9099");*/
 
-
-//export { auth };
-
-export function newUser(email, password) {
-  if (email == '' && password == '') {
-      return alert('Preencha os campos')
-  }
-  createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-          const user = userCredential.user;
-          alert("Usúario cadastrado com sucesso.");
-      })
-      .catch((error) => {
-          console.log(error)
-      });     
-  };
-
-
-export function login(email, password) {
-  if (email == '' && password == '') {
-      return alert('Preencha os campos')
-  }
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    alert("Bem vindo!")
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(error)
-  });     
-  };
-
-
-
-  
+export { auth };

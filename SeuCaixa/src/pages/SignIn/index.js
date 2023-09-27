@@ -1,9 +1,8 @@
-import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from "react-native";
+import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, } from "react-native";
 import { useState } from "react";
 import { Ionicons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
-import { login } from "../../config/firebase";
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,7 +14,6 @@ export default function SignIn() {
     const [password, setPassword] = useState ('');
 
     return (
-        <ScrollView>
         <SafeAreaView style={styles.container}>
             <Animatable.View animation="fadeInLeft" delay={200} style={styles.containerHeader}>
                 <Text style={styles.message}>Bem-vindo(a)</Text>
@@ -68,9 +66,8 @@ export default function SignIn() {
                 
                 </View>
                 
-                <TouchableOpacity style={{position:'absolute', marginTop:270, right:22}}
-                onPress={() => navigation.navigate('TelaPrincipal') }>
-                    <Text style={{fontSize: 15}}>Esqueceu a senha?</Text>
+                <TouchableOpacity style={{position:'absolute', marginTop:258, right:22}}>
+                    <Text style={{fontSize: 16}}>Esqueceu a senha?</Text>
                 </TouchableOpacity>
 
                 <View style={{flexDirection: 'row', marginVertical:6}}>
@@ -82,7 +79,7 @@ export default function SignIn() {
                     <Text>Manter conectado</Text>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => login(email, password)}>
+                <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
                 
@@ -112,7 +109,7 @@ export default function SignIn() {
                     paddingBottom: 20
                     }}>Faça o login com</Text>
 
-                <View style={{flexDirection: 'row', justifyContent:'space-between', paddingStart: '10%', paddingEnd:'10%', marginBottom:10}}>
+                <View style={{flexDirection: 'row', justifyContent:'space-between', paddingStart: '10%', paddingEnd:'10%'}}>
                     <TouchableOpacity style={{
                     width:50, 
                     height:50, 
@@ -149,7 +146,6 @@ export default function SignIn() {
             </Animatable.View >
 
         </SafeAreaView>
-        </ScrollView>
     )
 };
 
