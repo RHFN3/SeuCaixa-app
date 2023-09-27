@@ -1,27 +1,10 @@
-import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from "react-native";
+import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from "react";
 import Checkbox from 'expo-checkbox';
 import * as Animatable from 'react-native-animatable';
-import { auth } from '../../config/firebase';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-
-import { useNavigation } from '@react-navigation/native';
-
-
-function cadastrar(email, password) {
-    if (email == '' && password == '') {
-        return alert('Preencha tudo')
-    }
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            alert("funcionou")
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-}
+import { newUser } from '../../config/firebase';
+import {useNavigation} from "@react-navigation/native";
 
 
 export default function Register() {
@@ -30,6 +13,7 @@ export default function Register() {
     const [isChecked, setIsChecked] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
 
     return (
         <SafeAreaView style={styles.container}>
@@ -41,7 +25,7 @@ export default function Register() {
             <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
 
                 <View style={{ marginBottom: 12, marginTop: 20 }}>
-                    <Text>Nome e sobrenome</Text>
+                    <Text>Primeiro nome</Text>
                 </View>
 
                 <View style={{
@@ -55,6 +39,8 @@ export default function Register() {
                 }}>
                     <TextInput
                         placeholder="Digite seu nome"
+                        value="name"
+                        onChangeText={setName}
                         style={{
                             width: "100%"
                         }}
@@ -136,7 +122,7 @@ export default function Register() {
                         marginTop: 20,
                         alignItems: 'center',
                         justifyContent: 'center'
-                    }} onPress={() => cadastrar(email,password)}>
+                    }} onPress={() => newUser(email,password)}>
 
                         <Text style={{ color: 'white', fontSize: 20 }}>Registrar</Text>
                     </TouchableOpacity>
