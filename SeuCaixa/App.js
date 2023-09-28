@@ -6,7 +6,7 @@ import AuthProvider from './src/contexts/auth';
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor="#011327" barStyle="ligt-content" />
+      <StatusBar backgroundColor="#55C7A6" barStyle="ligt-content" />
       <AuthProvider>
       <Routes/>
       </AuthProvider>

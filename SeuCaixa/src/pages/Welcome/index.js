@@ -1,29 +1,34 @@
 
-import { 
-    View, 
-    Text, 
-    StyleSheet,
-    Image,
-    TouchableOpacity,
- } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import * as Animatable from 'react-native-animatable';
 
- import * as Animatable from 'react-native-animatable';
-
- import { useNavigation } from '@react-navigation/native';
+import LottieView from "lottie-react-native";
+import { useNavigation } from '@react-navigation/native';
+import { useState, useEffect, useRef } from "react";
 
 
 export default function Welcome() {
     const navigation = useNavigation();
+    const save = useRef(false);
+    const animation = useRef(null);
+    const firstRun = useRef(true);
+
+
+    useEffect( () => {
+        if(firstRun.current){
+            if(true){
+            animation.current.play(1,124);
+        }
+    }}, [save]);
 
     return (
         <View style={styles.container}>
             <View style={styles.containerLogo}>
-                <Animatable.Image
-                animation="flipInY"
-                source={require('../../assets/logo.jpg')}
-                style={{width: "100%"}}
-                resizeMode="contain"
-                
+                <LottieView
+                    source={require('../../assets/logo.json')}
+                    autoPlay={true}
+                    loop={true}
+                    ref={animation}
                 />
             </View>
 
@@ -49,11 +54,12 @@ export default function Welcome() {
 const styles = StyleSheet.create ({
     container:{
         flex: 1,
-        backgroundColor: "#011327"
+        backgroundColor: "#55C7A6"
     },
     containerLogo:{
         flex: 2,
-        backgroundColor: "#011327",
+        flexDirection: 'row',
+        //backgroundColor: "#011327",
         justifyContent: 'center',
         alignItems: 'center',
 
