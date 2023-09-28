@@ -1,11 +1,12 @@
 import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from "react-native";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Ionicons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
 import { login } from "../../config/firebase";
 
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from "../../contexts/auth";
 
 export default function SignIn() {
     const navigation = useNavigation();
@@ -13,6 +14,14 @@ export default function SignIn() {
     const [isPasswordShown, setIsPasswordShown] = useState(true);
     const [email, setEmail] = useState ('');
     const [password, setPassword] = useState ('');
+    
+    const {signIn} = useContext(AuthContext);
+
+    function handleLogin(){
+        signIn(email, password)
+    }
+
+
 
     return (
         <ScrollView>
@@ -30,7 +39,7 @@ export default function SignIn() {
                 placeholder="Digite um email..."
                 keyboardType="email-address"
                 value={email}
-                onChangeText={setEmail}
+                onChangeText={(text) => setEmail(text)}
                 style={{
                     borderBottomWidth: 1,
                     height: 40,
@@ -47,7 +56,7 @@ export default function SignIn() {
                 <TextInput
                 placeholder="Digite sua senha..."
                 value={password}
-                onChangeText={setPassword}
+                onChangeText={(text) => setPassword(text)}
                 secureTextEntry={isPasswordShown}
                 style={{
                     borderBottomWidth: 1,
@@ -69,7 +78,7 @@ export default function SignIn() {
                 </View>
                 
                 <TouchableOpacity style={{position:'absolute', marginTop:270, right:22}}
-                onPress={() => navigation.navigate('TelaPrincipal') }>
+                onPress={() => navigation.navigate('Home') }>
                     <Text style={{fontSize: 15}}>Esqueceu a senha?</Text>
                 </TouchableOpacity>
 
@@ -82,7 +91,7 @@ export default function SignIn() {
                     <Text>Manter conectado</Text>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => login(email, password)}>
+                <TouchableOpacity style={styles.button} onPress={handleLogin}>
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
                 

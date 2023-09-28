@@ -26,6 +26,7 @@ connectAuthEmulator(auth, "http://127.0.0.1:9099");*/
 //export { auth };
 
 export function newUser(email, password) {
+
   if (email == '' && password == '') {
       return alert('Preencha os campos')
   }
@@ -40,7 +41,10 @@ export function newUser(email, password) {
   };
 
 
+
 export function login(email, password) {
+
+
   if (email == '' && password == '') {
       return alert('Preencha os campos')
   }
@@ -53,7 +57,7 @@ export function login(email, password) {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(error)
-  });     
+  });   
   };
 
 

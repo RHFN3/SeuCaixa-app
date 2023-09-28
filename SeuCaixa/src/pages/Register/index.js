@@ -39,8 +39,8 @@ export default function Register() {
                 }}>
                     <TextInput
                         placeholder="Digite seu nome"
-                        value="name"
-                        onChangeText={setName}
+                        value={name}
+                        onChangeText={(text) => setName(text)}
                         style={{
                             width: "100%"
                         }}
@@ -63,7 +63,7 @@ export default function Register() {
                     <TextInput
                         placeholder="Digite seu email"
                         value={email}
-                        onChangeText={setEmail}
+                        onChangeText={(text) => setEmail(text)}
                         keyboardType='email-address'
                         style={{
                             width: "100%"
@@ -88,7 +88,7 @@ export default function Register() {
                         placeholder="Digite sua senha"
                         secureTextEntry={isPasswordShown}
                         value={password}
-                        onChangeText={setPassword}
+                        onChangeText={(text) => setPassword(text)}
                         style={{
                             width: "100%"
                         }}
