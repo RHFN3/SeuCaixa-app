@@ -9,17 +9,8 @@ import { useState, useEffect, useRef } from "react";
 
 export default function Welcome() {
     const navigation = useNavigation();
-    const save = useRef(false);
     const animation = useRef(null);
-    const firstRun = useRef(true);
 
-
-    useEffect( () => {
-        if(firstRun.current){
-            if(true){
-            animation.current.play(1,124);
-        }
-    }}, [save]);
 
     return (
         <View style={styles.container}>
@@ -27,7 +18,7 @@ export default function Welcome() {
                 <LottieView
                     source={require('../../assets/logo.json')}
                     autoPlay={true}
-                    loop={true}
+                    loop={false}
                     ref={animation}
                 />
             </View>
