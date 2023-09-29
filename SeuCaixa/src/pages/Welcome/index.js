@@ -1,5 +1,5 @@
 
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity } from "react-native";
 import * as Animatable from 'react-native-animatable';
 
 import LottieView from "lottie-react-native";
@@ -14,6 +14,7 @@ export default function Welcome() {
 
     return (
         <View style={styles.container}>
+        <StatusBar backgroundColor="#67E4FF" barStyle="ligt-content" />
             <View style={styles.containerLogo}>
                 <LottieView
                     source={require('../../assets/logo.json')}
@@ -23,70 +24,80 @@ export default function Welcome() {
                 />
             </View>
 
-            <Animatable.View delay={1000} animation="fadeInUp" style={styles.containerForm}>
-                <Text style={styles.title}>Acompanhe o caixa da sua loja de onde estiver</Text>
-                <Text style={styles.text}>Faça o login para começar</Text>
-
                 <TouchableOpacity 
                 style={styles.button}
-                onPress={ () => navigation.navigate('SignIn')}
-                >
-                    <Text style={styles.buttonText}>Acessar</Text>
+                onPress={ () => navigation.navigate('SignIn')}>
+                <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity 
+                style={styles.button2}
+                onPress={ () => navigation.navigate('Register')}>
+                <Text style={styles.buttonText2}>Registre-se</Text>
                 </TouchableOpacity>
 
-            </Animatable.View>
 
-
-        </View>
+         </View>
     )
 };
 
+/*
+            <Animatable.View delay={1000} animation="fadeInUp" style={styles.containerForm}>
+                <Text style={styles.title}>Acompanhe o caixa da sua loja de onde estiver</Text>
+                <Text style={styles.text}>Faça o login para começar</Text>
+            </Animatable.View>
+*/
 
 const styles = StyleSheet.create ({
     container:{
         flex: 1,
-        backgroundColor: "#55C7A6"
+        backgroundColor: "#67E4FF"
     },
     containerLogo:{
         flex: 2,
-        flexDirection: 'row',
-        //backgroundColor: "#011327",
-        justifyContent: 'center',
+        justifyContent:"flex-start",
         alignItems: 'center',
-
-    },
-    containerForm: {
-        flex: 1,
-        backgroundColor: "#f5f5f5",
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
-        paddingStart: '5%',
-        paddingEnd: '5%',
-
-    },
-    title:{
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginTop: 24,
-        marginBottom: 12,
-    },
-    text:{
-        color: "#a5a5a5"
+        marginTop: -200
     },
     button:{
         position: 'absolute',
-        backgroundColor: "#011327",
+        backgroundColor: "#E79C88",
         borderRadius: 50,
-        paddingVertical: 8,
-        width: "60%",
+        width: "80%",
+        height: "8%",
         alignSelf: "center",
-        bottom: "15%",
+        bottom: "20%",
         alignItems: 'center',
         justifyContent: 'center',
-        
+        marginBottom: 10,
+        elevation: 5
     },
     buttonText:{
-        color:"#FFF",
-        fontSize: 18,
-    }
+        color:"#4C60FA",
+        fontSize: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontWeight: "bold",
+    },
+    button2:{
+        position: 'absolute',
+        borderRadius: 50,
+        borderColor: "#4C60FA",
+        borderWidth: 5,
+        width: "80%",
+        height: "8%",
+        alignSelf: "center",
+        bottom: "10%",
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#67E4FF',
+        elevation: 5
+    },
+    buttonText2:{
+        color:"#4C60FA",
+        fontSize: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontWeight: "bold",
+    },
 })

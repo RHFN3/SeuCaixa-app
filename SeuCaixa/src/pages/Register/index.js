@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from "react-native";
+import { SafeAreaView, StatusBar, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from "react";
 import Checkbox from 'expo-checkbox';
@@ -17,6 +17,7 @@ export default function Register() {
 
     return (
         <SafeAreaView style={styles.container}>
+        <StatusBar backgroundColor="#A0C0FC" barStyle="ligt-content" /> 
             <Animatable.View animation="fadeInDown" delay={200} style={styles.title}>
                 <Text style={styles.message}>Crie sua conta</Text>
             </Animatable.View>
@@ -115,16 +116,17 @@ export default function Register() {
 
                 <View style={{ marginTop: 10 }}>
                     <TouchableOpacity style={{
-                        backgroundColor: "#011327",
+                        backgroundColor: "#4C60FA",
                         width: "100%",
                         height: 45,
                         borderRadius: 4,
                         marginTop: 20,
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        elevation: 5
                     }} onPress={() => newUser(email,password)}>
 
-                        <Text style={{ color: 'white', fontSize: 20 }}>Registrar</Text>
+                        <Text style={{ color: 'white', fontSize: 20, fontWeight:'bold' }}>Registrar</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -138,15 +140,15 @@ export default function Register() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#011327",
+        backgroundColor: "#A0C0FC",
     },
     title: {
-        marginTop: '10%',
+        marginTop: '5%',
         marginBottom: '8%',
         paddingStart: '5%',
     },
     message: {
-        color: "#FFF",
+        color: "#4C60FA",
         fontSize: 28,
         fontWeight: 'bold',
     },

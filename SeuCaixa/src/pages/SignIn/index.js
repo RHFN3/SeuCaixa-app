@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from "react-native";
+import { SafeAreaView, StatusBar, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from "react-native";
 import { useState, useContext } from "react";
 import { Ionicons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
@@ -26,6 +26,7 @@ export default function SignIn() {
     return (
         <ScrollView>
         <SafeAreaView style={styles.container}>
+        <StatusBar backgroundColor="#A0C0FC" barStyle="ligt-content" />    
             <Animatable.View animation="fadeInLeft" delay={200} style={styles.containerHeader}>
                 <Text style={styles.message}>Bem-vindo(a)</Text>
             </Animatable.View>
@@ -169,23 +170,23 @@ export default function SignIn() {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: "#011327",
+        backgroundColor: "#A0C0FC",
     },
     containerHeader:{
-        marginTop: '14%',
+        marginTop: '5%',
         marginBottom: '8%',
         paddingStart: '5%',
     },
     message:{
-        color: "#FFF",
+        color: "#4C60FA",
         fontSize: 28,
         fontWeight: 'bold',
     },
     containerForm:{
         flex: 1,
         backgroundColor: "#FFF",
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
+        borderTopLeftRadius: 35,
+        borderTopRightRadius: 35,
         paddingStart: '5%',
         paddingEnd: '5%'
     },
@@ -196,14 +197,14 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     button:{
-        backgroundColor:"#011327",
+        backgroundColor:"#4C60FA",
         width: "100%",
         borderRadius: 4,
         paddingVertical: 8,
         marginTop: 50,
         justifyContent:'center',
         alignItems: 'center',
-
+        elevation: 5
     },
     buttonText:{
         color: "#FFF",
