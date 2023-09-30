@@ -8,10 +8,15 @@ export default function Home(){
   const { name, user } = useContext(AuthContext)
 
   return (       
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1, backgroundColor:"#a4a4a4"}}>
+    <SafeAreaView style={{backgroundColor:"#FFF", width:"50%", height:"50%",flexDirection:'row'}}>  
+ 
+        <View style={{position:'absolute',marginTop:450}}>
           <Text>Tela principal</Text>
           <Text>Bem vindo {name}</Text>
           <Text>Email logado {user.email}</Text>
+        </View>  
+    </SafeAreaView>
     </SafeAreaView>
   )
 };

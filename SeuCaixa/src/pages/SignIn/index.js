@@ -24,9 +24,9 @@ export default function SignIn() {
 
 
     return (
-        <ScrollView>
-        <SafeAreaView style={styles.container}>
+        <ScrollView style={{backgroundColor:"#FFF"}}>
         <StatusBar backgroundColor="#A0C0FC" barStyle="ligt-content" />    
+        <SafeAreaView style={styles.container}>
             <Animatable.View animation="fadeInLeft" delay={200} style={styles.containerHeader}>
                 <Text style={styles.message}>Bem-vindo(a)</Text>
             </Animatable.View>
@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: "#A0C0FC",
+        borderBottomRightRadius: 35,
     },
     containerHeader:{
         marginTop: '5%',
@@ -183,10 +184,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     containerForm:{
-        flex: 1,
+        ///flex: 1,
         backgroundColor: "#FFF",
         borderTopLeftRadius: 35,
-        borderTopRightRadius: 35,
         paddingStart: '5%',
         paddingEnd: '5%'
     },
