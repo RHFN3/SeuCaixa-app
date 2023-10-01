@@ -14,7 +14,6 @@ export default function Welcome() {
 
     return (
         <View style={styles.container}>
-        <StatusBar backgroundColor="#67E4FF" barStyle="ligt-content" />
             <View style={styles.containerLogo}>
                 <LottieView
                     source={require('../../assets/logo.json')}
@@ -51,7 +50,7 @@ export default function Welcome() {
 const styles = StyleSheet.create ({
     container:{
         flex: 1,
-        backgroundColor: "#67E4FF"
+        backgroundColor: "#d0e3ff"
     },
     containerLogo:{
         flex: 2,
@@ -90,7 +89,7 @@ const styles = StyleSheet.create ({
         bottom: "10%",
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#67E4FF',
+        backgroundColor: '#d0e3ff',
         elevation: 5
     },
     buttonText2:{
