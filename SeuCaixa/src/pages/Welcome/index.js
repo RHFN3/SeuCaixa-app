@@ -13,7 +13,7 @@ export default function Welcome() {
 
 
     return (
-        <View style={styles.container}>
+        <Animatable.View style={styles.container}>
             <View style={styles.containerLogo}>
                 <LottieView
                     source={require('../../assets/logo.json')}
@@ -36,7 +36,7 @@ export default function Welcome() {
                 </TouchableOpacity>
 
 
-         </View>
+         </Animatable.View>
     )
 };
 

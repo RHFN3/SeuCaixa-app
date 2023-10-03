@@ -1,4 +1,4 @@
-import { SafeAreaView, StatusBar, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from "react-native";
+import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from "react";
 import Checkbox from 'expo-checkbox';
@@ -17,7 +17,6 @@ export default function Register() {
 
     return (
         <SafeAreaView style={styles.container}>
-        <StatusBar backgroundColor="#A0C0FC" barStyle="ligt-content" /> 
             <Animatable.View animation="fadeInDown" delay={200} style={styles.title}>
                 <Text style={styles.message}>Crie sua conta</Text>
             </Animatable.View>
@@ -123,10 +122,12 @@ export default function Register() {
                         marginTop: 20,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        elevation: 5
+                        elevation: 8
                     }} onPress={() => newUser(email,password)}>
 
-                        <Text style={{ color: 'white', fontSize: 20, fontWeight:'bold' }}>Registrar</Text>
+                        <Text style={{ color: 'white', fontSize: 20, fontWeight:'bold' }}>
+                            Registrar
+                        </Text>
                     </TouchableOpacity>
                 </View>
 
@@ -140,7 +141,7 @@ export default function Register() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#A0C0FC",
+        backgroundColor: "#d0e3ff",
     },
     title: {
         marginTop: '5%',
