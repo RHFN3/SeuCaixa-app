@@ -2,7 +2,7 @@ import { SafeAreaView, StyleSheet, Text, View, ScrollView } from 'react-native'
 import React, { useContext } from 'react';
 
 import { AuthContext } from '../../contexts/auth';
-
+//sad
 
 export default function Home(){
   const { name, user } = useContext(AuthContext)
